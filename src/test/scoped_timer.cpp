@@ -49,5 +49,19 @@ void tst_scoped_timer() {
     
     for (auto& th : threads) 
         th.join();
+
+    
+    for (int i = 0; i< 1000000; i++) {
+        if (i % 10 == 0) {
+            std::cout << i << std::endl;
+        }
+        test_scoped_eh eh;
+        auto delay = rand() % 20 + 1;
+        scoped_timer sc(100, &eh);
+        auto end = std::chrono::steady_clock::now() + std::chrono::milliseconds(delay);
+        while (std::chrono::steady_clock::now() < end) {
+
+        }
+    }
     
 }
